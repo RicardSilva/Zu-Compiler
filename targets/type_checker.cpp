@@ -1,4 +1,4 @@
-// $Id: type_checker.cpp,v 1.15 2016/03/17 18:46:41 ist179027 Exp $ -*- c++ -*-
+// $Id: type_checker.cpp,v 1.19 2016/04/14 15:37:17 ist179027 Exp $ -*- c++ -*-
 #include <string>
 #include "targets/type_checker.h"
 #include "ast/all.h"  // automatically generated
@@ -33,16 +33,18 @@ void zu::type_checker::do_identifier_node(cdk::identifier_node * const node, int
 //---------------------------------------------------------------------------
 
 inline void zu::type_checker::processUnaryExpression(cdk::unary_expression_node * const node, int lvl) {
-  node->argument()->accept(this, lvl + 2);
+	/*  
+	node->argument()->accept(this, lvl + 2);
   if (node->argument()->type()->name() != basic_type::TYPE_INT)
     throw std::string("wrong type in argument of unary expression");
 
   // in Zu, expressions are always int
   node->type(new basic_type(4, basic_type::TYPE_INT));
+	*/
 }
 
 void zu::type_checker::do_identity_node(zu::identity_node * const node, int lvl) {
-  /* FIXME */
+  processUnaryExpression(node, lvl);
 }
 
 void zu::type_checker::do_neg_node(cdk::neg_node * const node, int lvl) {
@@ -50,21 +52,21 @@ void zu::type_checker::do_neg_node(cdk::neg_node * const node, int lvl) {
 }
 
 void zu::type_checker::do_not_node(zu::not_node * const node, int lvl) {
-  /* FIXME */
+  processUnaryExpression(node, lvl);
 }
 
 void zu::type_checker::do_address_node(zu::address_node * const node, int lvl) {
-  /* FIXME */
+  //processUnaryExpression(node, lvl);
 }
 
 void zu::type_checker::do_malloc_node(zu::malloc_node * const node, int lvl) {
-  /* FIXME */
+  //processUnaryExpression(node, lvl);
 }
 
 //---------------------------------------------------------------------------
 
 inline void zu::type_checker::processBinaryExpression(cdk::binary_expression_node * const node, int lvl) {
-  ASSERT_UNSPEC;
+  /*ASSERT_UNSPEC;
   node->left()->accept(this, lvl + 2);
   if (node->left()->type()->name() != basic_type::TYPE_INT)
     throw std::string("wrong type in left argument of binary expression");
@@ -74,7 +76,7 @@ inline void zu::type_checker::processBinaryExpression(cdk::binary_expression_nod
     throw std::string("wrong type in right argument of binary expression");
 
   // in Zu, expressions are always int
-  node->type(new basic_type(4, basic_type::TYPE_INT));
+  node->type(new basic_type(4, basic_type::TYPE_INT));*/
 }
 
 void zu::type_checker::do_add_node(cdk::add_node * const node, int lvl) {
@@ -111,10 +113,10 @@ void zu::type_checker::do_eq_node(cdk::eq_node * const node, int lvl) {
   processBinaryExpression(node, lvl);
 }
 void zu::type_checker::do_and_node(zu::and_node * const node, int lvl) {
-  /*FIXME: processBinaryExpression(node, lvl);*/
+  processBinaryExpression(node, lvl);
 }
 void zu::type_checker::do_or_node(zu::or_node * const node, int lvl) {
-  /*FIXME: processBinaryExpression(node, lvl);*/
+  processBinaryExpression(node, lvl);
 }
 
 //---------------------------------------------------------------------------
@@ -126,15 +128,13 @@ void zu::type_checker::do_rvalue_node(zu::rvalue_node * const node, int lvl) {
 
 //---------------------------------------------------------------------------
 
-void zu::type_checker::do_lvalue_node(zu::lvalue_node * const node, int lvl) {
-  /*FIXME:
+/*void zu::type_checker::do_lvalue_node(zu::lvalue_node * const node, int lvl) {
   const std::string &id = node->value();
   std::shared_ptr<zu::symbol> symbol = _symtab.find(id);
   if (symbol == nullptr) throw id + " undeclared";
   // hackish stuff...
-  node->type(new basic_type(4, basic_type::TYPE_INT));
-  */
-}
+  node->type(new basic_type(4, basic_type::TYPE_INT));  
+}*/
 
 //---------------------------------------------------------------------------
 
@@ -216,7 +216,7 @@ void zu::type_checker::do_print_node(zu::print_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::type_checker::do_read_node(zu::read_node * const node, int lvl) {
-  node->argument()->accept(this, lvl + 2);
+  // FIXME: node->argument()->accept(this, lvl + 2);
 }
 
 //---------------------------------------------------------------------------

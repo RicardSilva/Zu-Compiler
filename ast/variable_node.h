@@ -1,9 +1,8 @@
-// $Id: variable_node.h,v 1.3 2016/03/16 23:30:11 ist179027 Exp $
+// $Id: variable_node.h,v 1.5 2016/04/06 13:07:54 ist178414 Exp $
 #ifndef __ZU_VARIABLE_NODE_H__
 #define __ZU_VARIABLE_NODE_H__
 
 #include "ast/lvalue_node.h"
-#include <cdk/basic_type.h>
 #include <string>
 
 namespace zu {
@@ -12,22 +11,14 @@ namespace zu {
    * Class for describing syntactic tree leaves for holding variables.
    */
   class variable_node: public zu::lvalue_node {
-    basic_type *_type;
-    std::string _id;
+    std::string *_id;
 
   public:
-    inline variable_node(int lineno, basic_type *type, const std::string &id) :
-        zu::lvalue_node(lineno), _type(type), _id(id) {
+    inline variable_node(int lineno, std::string *id) :
+        zu::lvalue_node(lineno), _id(id) {
     }
 
-    basic_type *type() {
-      return _type;
-    }
-    void type(basic_type *type) {
-      _type = type;
-    }
-
-    const std::string &id() {
+    const std::string *id() {
       return _id;
     }
 

@@ -1,4 +1,4 @@
-// $Id: lvalue_node.h,v 1.3 2016/03/17 19:30:15 ist179027 Exp $
+// $Id: lvalue_node.h,v 1.4 2016/04/11 21:25:07 ist179027 Exp $
 #ifndef __ZU_LVALUE_NODE_H__
 #define __ZU_LVALUE_NODE_H__
 
@@ -18,9 +18,7 @@ namespace zu {
      * @param sp semantic processor visitor
      * @param level syntactic tree level
      */
-    virtual void accept(basic_ast_visitor *sp, int level) {
-      sp->do_lvalue_node(this, level);
-    } /* = 0; */
+    virtual void accept(basic_ast_visitor *sp, int level) = 0;
 
   };
 

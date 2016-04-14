@@ -1,4 +1,4 @@
-// $Id: postfix_writer.h,v 1.15 2016/03/17 18:46:41 ist179027 Exp $ -*- c++ -*-
+// $Id: postfix_writer.h,v 1.16 2016/04/11 21:25:07 ist179027 Exp $ -*- c++ -*-
 #ifndef __ZU_SEMANTICS_PF_WRITER_H__
 #define __ZU_SEMANTICS_PF_WRITER_H__
 
@@ -73,7 +73,6 @@ namespace zu {
     void do_or_node(zu::or_node * const node, int lvl);
 
   public:
-    void do_lvalue_node(zu::lvalue_node * const node, int lvl);
     void do_rvalue_node(zu::rvalue_node * const node, int lvl);
 
     void do_variable_node(zu::variable_node * const node, int lvl);

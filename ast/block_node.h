@@ -1,4 +1,4 @@
-// $Id: block_node.h,v 1.2 2016/03/17 19:24:28 ist179027 Exp $ -*- c++ -*-
+// $Id: block_node.h,v 1.3 2016/04/06 15:29:17 ist178414 Exp $ -*- c++ -*-
 #ifndef __ZU_BLOCK_NODE_H__
 #define __ZU_BLOCK_NODE_H__
 
@@ -10,7 +10,6 @@ namespace zu {
   class block_node: public cdk::basic_node {
     cdk::sequence_node *_declarations;
     cdk::sequence_node *_instructions;
-    cdk::basic_node *_block;
 
   public:
     inline block_node(int lineno, cdk::sequence_node *declarations, cdk::sequence_node *instructions) :

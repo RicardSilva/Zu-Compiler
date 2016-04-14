@@ -1,4 +1,4 @@
-// $Id: postfix_writer.cpp,v 1.15 2016/03/17 18:46:41 ist179027 Exp $ -*- c++ -*-
+// $Id: postfix_writer.cpp,v 1.18 2016/04/11 21:25:07 ist179027 Exp $ -*- c++ -*-
 #include <string>
 #include <sstream>
 #include "targets/type_checker.h"
@@ -39,14 +39,22 @@ void zu::postfix_writer::do_string_node(cdk::string_node * const node, int lvl) 
   _pf.ADDR(mklbl(lbl1)); // the string to be printed
 }
 
+
 void zu::postfix_writer::do_identifier_node(cdk::identifier_node * const node, int lvl) {
-  /*FIXME*/
+  
 }
+
 
 //---------------------------------------------------------------------------
 
 void zu::postfix_writer::do_identity_node(zu::identity_node * const node, int lvl) {
-  /* FIXME */
+	/* FIX ME  
+
+	CHECK_TYPES(_compiler, _symtab, node);
+  node->argument()->accept(this, lvl); // determine the value
+  _pf.IDENTITY();
+
+	*/ 
 }
 
 //---------------------------------------------------------------------------
@@ -59,12 +67,10 @@ void zu::postfix_writer::do_neg_node(cdk::neg_node * const node, int lvl) {
 
 //---------------------------------------------------------------------------
 
-void zu::postfix_writer::do_not_node(zu::not_node * const node, int lvl) {
-  /* FIXME:
-  CHECK_TYPES(_compiler, _symtab, node);
+void zu::postfix_writer::do_not_node(zu::not_node * const node, int lvl) {  
+	CHECK_TYPES(_compiler, _symtab, node);
   node->argument()->accept(this, lvl); // determine the value
-  _pf.NEG(); // 2-complement
-  */
+  _pf.NOT(); 
 }
 
 //---------------------------------------------------------------------------
@@ -148,20 +154,16 @@ void zu::postfix_writer::do_eq_node(cdk::eq_node * const node, int lvl) {
   _pf.EQ();
 }
 void zu::postfix_writer::do_and_node(zu::and_node * const node, int lvl) {
-  /*FIXME:
   CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.EQ();
-  */
+  _pf.AND();
 }
 void zu::postfix_writer::do_or_node(zu::or_node * const node, int lvl) {
-  /*FIXME: 
   CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
   _pf.EQ();
-  */
 }
 
 //---------------------------------------------------------------------------
@@ -174,13 +176,13 @@ void zu::postfix_writer::do_rvalue_node(zu::rvalue_node * const node, int lvl) {
 
 //---------------------------------------------------------------------------
 
-void zu::postfix_writer::do_lvalue_node(zu::lvalue_node * const node, int lvl) {
-  /*FIXME:
+/*void zu::postfix_writer::do_lvalue_node(zu::lvalue_node * const node, int lvl) {
+  FIXME:
   CHECK_TYPES(_compiler, _symtab, node);
   // simplified generation: all variables are global
   _pf.ADDR(node->value());
-  */
-}
+  
+}*/
 
 //---------------------------------------------------------------------------
 
@@ -329,7 +331,6 @@ void zu::postfix_writer::do_read_node(zu::read_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   _pf.CALL("readi");
   _pf.PUSH();
-  node->argument()->accept(this, lvl);
   _pf.STORE();
 }
 

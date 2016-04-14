@@ -1,4 +1,4 @@
-// $Id: xml_writer.h,v 1.15 2016/03/17 18:46:41 ist179027 Exp $ -*- c++ -*-
+// $Id: xml_writer.h,v 1.19 2016/04/14 22:03:13 ist179027 Exp $ -*- c++ -*-
 #ifndef __ZU_SEMANTICS_XMLWRITER_H__
 #define __ZU_SEMANTICS_XMLWRITER_H__
 
@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cdk/ast/basic_node.h>
 #include <cdk/symbol_table.h>
+#include <cdk/basic_type.h>
 #include "targets/basic_ast_visitor.h"
 #include "targets/symbol.h"
 
@@ -50,6 +51,40 @@ namespace zu {
       os() << std::string(lvl, ' ') << "<" << node->name() << ">" << node->value() << "</" << node->name() << ">" << std::endl;
     }
 
+    void processExpr(cdk::basic_node * const node, int lvl) {
+      os() << std::string(lvl, ' ') << "<" << node->name() << "/>" << std::endl;
+    }
+
+    void processBool(bool value, const std::string &name, int lvl) {
+      if (value)
+        os() << std::string(lvl, ' ') << "<" << name << "/>" << std::endl;
+    }
+
+    void processName(const std::string &name, int lvl) {
+      os() << std::string(lvl, ' ') << "<name>" << name << "</name>" << std::endl;
+    }
+
+    void processType(basic_type *t, int lvl) {
+      os() << std::string(lvl, ' ') << "<type>" << getName(t) << "</type>" << std::endl;
+    }
+
+    const std::string getName(basic_type *t) const {
+      switch(t->name()) {
+        case basic_type::TYPE_VOID:
+          return "void";
+        case basic_type::TYPE_INT:
+          return "int";
+        case basic_type::TYPE_STRING:
+          return "string";
+        case basic_type::TYPE_DOUBLE:
+          return "double";
+        case basic_type::TYPE_POINTER:
+          return getName(t->subtype())+'*';
+        default:
+          return "ERROR";
+      }
+    }
+
   public:
     void do_integer_node(cdk::integer_node * const node, int lvl);
     void do_double_node(cdk::double_node * const node, int lvl);
@@ -85,7 +120,6 @@ namespace zu {
     void do_or_node(zu::or_node * const node, int lvl);
 
   public:
-    void do_lvalue_node(zu::lvalue_node * const node, int lvl);
     void do_rvalue_node(zu::rvalue_node * const node, int lvl);
 
     void do_variable_node(zu::variable_node * const node, int lvl);
