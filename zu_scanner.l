@@ -52,9 +52,9 @@ SPACE	    	[ \t\n\r]
 
 \"                     	yy_push_state(X_STRING); yylval.s = new std::string("");
 <X_STRING>\\00 			yy_push_state(X_STR_SPECIAL); *yylval.s += yytext; return tSTRING;
-<X_STRING>\\{HEXADIGIT}{HEXADIGIT} *yylval.s += yytext;
+<X_STRING>\\{HEXADIGIT}{HEXADIGIT} *yylval.s += (char)strtol(yytext+1, nullptr, 16);
 <X_STRING>\\0			yy_push_state(X_STR_SPECIAL); *yylval.s+= yytext; return tSTRING;
-<X_STRING>\\{HEXADIGIT}	*yylval.s += yytext;
+<X_STRING>\\{HEXADIGIT}	*yylval.s += (char)strtol(yytext+1, nullptr, 16);
 <X_STRING>\\\"         	*yylval.s += yytext;
 <X_STRING>\\t         	*yylval.s += yytext;
 <X_STRING>\\n         	*yylval.s += yytext;
