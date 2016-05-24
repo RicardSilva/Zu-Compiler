@@ -1,4 +1,4 @@
-// $Id: type_checker.h,v 1.16 2016/04/11 21:25:07 ist179027 Exp $ -*- c++ -*-
+// $Id: type_checker.h,v 1.19 2016/05/19 01:22:39 ist179027 Exp $ -*- c++ -*-
 #ifndef __ZU_SEMANTICS_TYPE_CHECKER_H__
 #define __ZU_SEMANTICS_TYPE_CHECKER_H__
 
@@ -43,7 +43,8 @@ namespace zu {
     void do_identifier_node(cdk::identifier_node * const node, int lvl);
 
   protected:
-    void processUnaryExpression(cdk::unary_expression_node * const node, int lvl);
+    void processUnaryExpressionI(cdk::unary_expression_node * const node, int lvl);
+    void processUnaryExpressionID(cdk::unary_expression_node * const node, int lvl);
 
   public:
     void do_identity_node(zu::identity_node * const node, int lvl);
@@ -53,7 +54,9 @@ namespace zu {
     void do_malloc_node(zu::malloc_node * const node, int lvl);
 
   protected:
-    void processBinaryExpression(cdk::binary_expression_node * const node, int lvl);
+    void processBinaryExpressionI(cdk::binary_expression_node * const node, int lvl);
+    void processBinaryExpressionID(cdk::binary_expression_node * const node, int lvl);
+    void processBinaryExpressionIDP(cdk::binary_expression_node * const node, int lvl);
 
   public:
     void do_add_node(cdk::add_node * const node, int lvl);

@@ -1,4 +1,4 @@
-// $Id: xml_writer.cpp,v 1.22 2016/04/13 22:56:02 ist179027 Exp $ -*- c++ -*-
+// $Id: xml_writer.cpp,v 1.26 2016/05/15 16:04:11 ist179027 Exp $ -*- c++ -*-
 #include <string>
 #include "targets/xml_writer.h"
 #include "targets/type_checker.h"
@@ -53,10 +53,14 @@ void zu::xml_writer::do_not_node(zu::not_node * const node, int lvl) {
 }
 
 void zu::xml_writer::do_address_node(zu::address_node * const node, int lvl) {
-  processUnaryExpression(node, lvl);
+  CHECK_TYPES(_compiler, _symtab, node);
+  openTag(node, lvl);
+  node->arg()->accept(this, lvl + 2);
+  closeTag(node, lvl);
 }
 
 void zu::xml_writer::do_malloc_node(zu::malloc_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
 	openTag("size", lvl + 2);
 	node->counter()->accept(this, lvl + 4);
@@ -125,16 +129,10 @@ void zu::xml_writer::do_rvalue_node(zu::rvalue_node * const node, int lvl) {
 
 //---------------------------------------------------------------------------
 
-/*void zu::xml_writer::do_lvalue_node(zu::lvalue_node * const node, int lvl) {
-  CHECK_TYPES(_compiler, _symtab, node);
-  processSimple(node, lvl);
-}*/
-
-//---------------------------------------------------------------------------
-
 void zu::xml_writer::do_variable_node(zu::variable_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
-  processName(*(node->id()), lvl + 2);
+  processName(node->id(), lvl + 2);
   closeTag(node, lvl);
 }
 
@@ -158,18 +156,18 @@ void zu::xml_writer::do_index_node(zu::index_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::xml_writer::do_fundecl_node(zu::fundecl_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
 
   processType(node->type(), lvl + 2);
-  processName(*(node->id()), lvl + 2);
+  processName(node->id(), lvl + 2);
   processBool(node->ispublic(), "public", lvl + 2);
   processBool(node->isextern(), "extern", lvl + 2);
 	
-	if (node->args()!=nullptr) {
-		openTag("arguments", lvl + 2);
-		node->args()->accept(this, lvl + 4);
-		closeTag("arguments", lvl + 2);
-	}
+
+	openTag("arguments", lvl + 2);
+	node->args()->accept(this, lvl + 4);
+	closeTag("arguments", lvl + 2);
 
   closeTag(node, lvl);
 
@@ -178,18 +176,17 @@ void zu::xml_writer::do_fundecl_node(zu::fundecl_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::xml_writer::do_fundef_node(zu::fundef_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
 
   processType(node->type(), lvl + 2);
-  processName(*(node->id()), lvl + 2);
+  processName(node->id(), lvl + 2);
   processBool(node->ispublic(), "public", lvl + 2);
   processBool(node->isextern(), "extern", lvl + 2);
 
-  if (node->args()!=nullptr) {
-		openTag("arguments", lvl + 2);
-		node->args()->accept(this, lvl + 4);
-		closeTag("arguments", lvl + 2);
-	}
+	openTag("arguments", lvl + 2);
+	node->args()->accept(this, lvl + 4);
+	closeTag("arguments", lvl + 2);
 
   if (node->retval() != nullptr) {
     openTag("default_value", lvl + 2);
@@ -207,15 +204,14 @@ void zu::xml_writer::do_fundef_node(zu::fundef_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::xml_writer::do_funcall_node(zu::funcall_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
 
   processName(node->id(), lvl + 2);
 
-  if (node->args()!=nullptr) {
-		openTag("arguments", lvl + 2);
-		node->args()->accept(this, lvl + 4);
-		closeTag("arguments", lvl + 2);
-	}
+	openTag("arguments", lvl + 2);
+	node->args()->accept(this, lvl + 4);
+	closeTag("arguments", lvl + 2);
 
   closeTag(node, lvl);
 }
@@ -223,10 +219,11 @@ void zu::xml_writer::do_funcall_node(zu::funcall_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::xml_writer::do_vardecl_node(zu::vardecl_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
 
   processType(node->type(), lvl + 2);
-  processName(*(node->id()), lvl + 2);
+  processName(node->id(), lvl + 2);
   processBool(node->ispublic(), "public", lvl + 2);
   processBool(node->isextern(), "extern", lvl + 2);
 
@@ -237,10 +234,11 @@ void zu::xml_writer::do_vardecl_node(zu::vardecl_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::xml_writer::do_vardef_node(zu::vardef_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
 
   processType(node->type(), lvl + 2);
-  processName(*(node->id()), lvl + 2);
+  processName(node->id(), lvl + 2);
   processBool(node->ispublic(), "public", lvl + 2);
   processBool(node->isextern(), "extern", lvl + 2);
 
@@ -292,29 +290,27 @@ void zu::xml_writer::do_print_node(zu::print_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::xml_writer::do_read_node(zu::read_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   processExpr(node, lvl);
 }
 
 //---------------------------------------------------------------------------
 
 void zu::xml_writer::do_for_node(zu::for_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
 
-	if (node->init()!=nullptr) {
-		openTag("initialization", lvl + 2);
-		node->init()->accept(this, lvl + 4);
-		closeTag("initialization", lvl + 2);
-	}
+	openTag("initialization", lvl + 2);
+	node->init()->accept(this, lvl + 4);
+	closeTag("initialization", lvl + 2);
 	
   openTag("condition", lvl + 2);
   node->condition()->accept(this, lvl + 4);
   closeTag("condition", lvl + 2);
   
-	if (node->incr()!=nullptr) {
-		openTag("increment", lvl + 2);
-		node->incr()->accept(this, lvl + 4);
-		closeTag("increment", lvl + 2);
-	}
+	openTag("increment", lvl + 2);
+	node->incr()->accept(this, lvl + 4);
+	closeTag("increment", lvl + 2);
 	
   openTag("block", lvl + 2);
   node->block()->accept(this, lvl + 4);
@@ -326,6 +322,7 @@ void zu::xml_writer::do_for_node(zu::for_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::xml_writer::do_if_node(zu::if_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
   openTag("condition", lvl + 2);
   node->condition()->accept(this, lvl + 4);
@@ -339,6 +336,7 @@ void zu::xml_writer::do_if_node(zu::if_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::xml_writer::do_if_else_node(zu::if_else_node * const node, int lvl) {
+  CHECK_TYPES(_compiler, _symtab, node);
   openTag(node, lvl);
   openTag("condition", lvl + 2);
   node->condition()->accept(this, lvl + 4);
@@ -376,16 +374,13 @@ void zu::xml_writer::do_return_node(zu::return_node * const node, int lvl) {
 void zu::xml_writer::do_block_node(zu::block_node * const node, int lvl) {
   openTag(node, lvl);
 
-	if (node->declarations()!=nullptr) {
-		openTag("declarations", lvl + 2);
-		node->declarations()->accept(this, lvl + 4);
-		closeTag("declarations", lvl + 2);
-	}
+	openTag("declarations", lvl + 2);
+	node->declarations()->accept(this, lvl + 4);
+	closeTag("declarations", lvl + 2);
 	
-	if (node->instructions()!=nullptr) {
-		openTag("instructions", lvl + 2);
-		node->instructions()->accept(this, lvl + 4);
-		closeTag("instructions", lvl + 2);
-	}
+	openTag("instructions", lvl + 2);
+	node->instructions()->accept(this, lvl + 4);
+	closeTag("instructions", lvl + 2);
+  
   closeTag(node, lvl);
 }

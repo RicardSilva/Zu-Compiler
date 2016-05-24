@@ -1,4 +1,4 @@
-// $Id: postfix_writer.h,v 1.16 2016/04/11 21:25:07 ist179027 Exp $ -*- c++ -*-
+// $Id: postfix_writer.h,v 1.23 2016/05/19 23:20:41 ist179027 Exp $ -*- c++ -*-
 #ifndef __ZU_SEMANTICS_PF_WRITER_H__
 #define __ZU_SEMANTICS_PF_WRITER_H__
 
@@ -6,8 +6,10 @@
 #include <iostream>
 #include <cdk/symbol_table.h>
 #include <cdk/emitters/basic_postfix_emitter.h>
+#include <vector>
 #include "targets/basic_ast_visitor.h"
 #include "targets/symbol.h"
+#include "size_visitor.h"
 
 namespace zu {
 
@@ -17,12 +19,18 @@ namespace zu {
   class postfix_writer: public basic_ast_visitor {
     cdk::symbol_table<zu::symbol> &_symtab;
     cdk::basic_postfix_emitter &_pf;
+    std::vector<int> _continues;
+    std::vector<int> _breaks;
+    std::map<std::string,int> _externs {{"readi", 1}, {"readd", 1}, {"readln", 1}, {"printi", 1}, {"printd", 1}, {"prints", 1}, {"println", 1}};
     int _lbl;
+    int _retlbl;
+    bool _inside;
+    size_t _offset;
 
   public:
     postfix_writer(std::shared_ptr<cdk::compiler> compiler, cdk::symbol_table<zu::symbol> &symtab,
                    cdk::basic_postfix_emitter &pf) :
-        basic_ast_visitor(compiler), _symtab(symtab), _pf(pf), _lbl(0) {
+        basic_ast_visitor(compiler), _symtab(symtab), _pf(pf), _lbl(0), _retlbl(0), _inside(false), _offset(0) {
     }
 
   public:
@@ -39,6 +47,13 @@ namespace zu {
       else
         oss << "_L" << lbl;
       return oss.str();
+    }
+
+  public:
+    void declare_ext() {
+      //_pf.TEXT();
+      for (auto kv: _externs)
+        _pf.EXTERN(kv.first);
     }
 
   public:

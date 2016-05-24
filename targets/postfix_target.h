@@ -1,4 +1,4 @@
-// $Id: postfix_target.h,v 1.1 2016/02/19 19:29:48 david Exp $
+// $Id: postfix_target.h,v 1.2 2016/05/19 23:20:41 ist179027 Exp $
 #ifndef __ZU_SEMANTICS_PFEVALUATOR_H__
 #define __ZU_SEMANTICS_PFEVALUATOR_H__
 
@@ -32,6 +32,7 @@ namespace zu {
       // generate assembly code from the syntax tree
       postfix_writer writer(compiler, symtab, pf);
       compiler->ast()->accept(&writer, 0);
+      writer.declare_ext();
 
       return true;
     }

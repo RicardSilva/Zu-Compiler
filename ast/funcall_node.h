@@ -2,6 +2,7 @@
 #define __ZU_FUNCALL_NODE_H__
 
 #include <cdk/ast/sequence_node.h>
+#include "ast/lvalue_node.h"
 #include <string>
 
 namespace zu {
@@ -14,8 +15,8 @@ namespace zu {
     cdk::sequence_node *_args;
 
   public:
-    inline funcall_node(int lineno, const std::string &id, cdk::sequence_node *args) :
-        cdk::expression_node(lineno), _id(id), _args(args) {
+    inline funcall_node(int lineno, const std::string *id, cdk::sequence_node *args) :
+        cdk::expression_node(lineno), _id(*id), _args(args) {
     }
 
   public:

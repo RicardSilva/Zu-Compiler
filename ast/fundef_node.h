@@ -14,7 +14,7 @@ namespace zu {
    */
   class fundef_node: public cdk::basic_node {
     basic_type *_type;
-    std::string *_id;
+    std::string _id;
     bool _ispublic;
     bool _isextern;
 		cdk::sequence_node *_args;
@@ -24,7 +24,7 @@ namespace zu {
   public:
     inline fundef_node(int lineno, basic_type *type, std::string *id, 
       bool ispublic, bool isextern, cdk::sequence_node *args, cdk::expression_node *retval, zu::block_node *body) :
-        cdk::basic_node(lineno), _type(type), _id(id), 
+        cdk::basic_node(lineno), _type(type), _id(*id), 
         	_ispublic(ispublic), _isextern(isextern), _args(args), _retval(retval), _body(body) {}
 
   public:
@@ -40,7 +40,7 @@ namespace zu {
       _type = type;
     }
 
-    inline const std::string *id() const {
+    inline const std::string &id() const {
       return _id;
     }
     inline const bool ispublic() const {

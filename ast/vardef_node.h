@@ -12,7 +12,7 @@ namespace zu {
    */
   class vardef_node: public cdk::basic_node {
     basic_type *_type;
-    std::string *_id;
+    std::string _id;
     bool _ispublic;
     bool _isextern;
     cdk::expression_node *_value;
@@ -20,7 +20,7 @@ namespace zu {
   public:
     inline vardef_node(int lineno, basic_type *type, std::string *id, bool ispublic, bool isextern, 
       cdk::expression_node *value) :
-        cdk::basic_node(lineno), _type(type), _id(id), _ispublic(ispublic), _isextern(isextern), _value(value) {
+        cdk::basic_node(lineno), _type(type), _id(*id), _ispublic(ispublic), _isextern(isextern), _value(value) {
     }
 
   public:
@@ -31,7 +31,7 @@ namespace zu {
       _type = type;
     }
 
-    inline const std::string *id() const {
+    inline const std::string &id() const {
       return _id;
     }
     inline const bool ispublic() const {
