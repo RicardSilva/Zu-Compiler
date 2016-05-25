@@ -1,7 +1,7 @@
 # Compilers Project 2016 #
 
 Project for the compilers course of the 2nd semester of 2016. 
-The project objective was building a compiler in C++ for the language 'Zu'. The compiler was built using mainly visitors.
+The project objective was to build a compiler in C++ for the language 'Zu'. The compiler was built using mainly visitors.
 
 <b>Disclaimer</b>: The project was not completely finished due to time constraints, but it is pretty close to being complete. :) 
 
