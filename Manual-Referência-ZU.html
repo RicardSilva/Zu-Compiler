@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="UTF-8" />
+<title>Manual de Referência da Linguagem "zu"</title>
+<meta name="generator" content="MediaWiki 1.24.1" />
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/~david/wiki/pt/opensearch_desc.php" title="Wiki**3 (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.l2f.inesc-id.pt/~david/wiki/pt/api.php?action=rsd" />
+<link rel="alternate" hreflang="x-default" href="/~david/w/pt/Compiladores/Projecto_de_Compiladores/Projecto_2015-2016/Manual_de_Refer%C3%AAncia_da_Linguagem_%22zu%22" />
+<link rel="alternate" type="application/atom+xml" title="Wiki**3 Atom feed" href="/~david/wiki/pt/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.l2f.inesc-id.pt/~david/wiki/pt/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.ui.button%7Cskins.foreground&amp;only=styles&amp;skin=foreground&amp;*" />
+<link rel="stylesheet" href="/~david/wiki/pt/skins/foreground/~david/wiki/pt/extensions/vis/dist/vis.css?303" media="screen" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.l2f.inesc-id.pt/~david/wiki/pt/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=foreground&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wikidavidpub-wikidavidpubpt_:resourceloader:filter:minify-css:7:c91a71297da9535e8a9c2db8a4976f8a */</style>
+<script src="https://www.l2f.inesc-id.pt/~david/wiki/pt/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=foreground&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Compiladores/Projecto_de_Compiladores/Projecto_2015-2016/Manual_de_Referência_da_Linguagem_\"zu\"","wgTitle":"Compiladores/Projecto de Compiladores/Projecto 2015-2016/Manual de Referência da Linguagem \"zu\"","wgCurRevisionId":7478,"wgRevisionId":7478,"wgArticleId":1779,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Compiladores 2015/2016","Compiladores","Ensino"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Compiladores/Projecto_de_Compiladores/Projecto_2015-2016/Manual_de_Referência_da_Linguagem_\"zu\"","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"preview":false,"previewDialog":false,"publish":false}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"foreground","stubthreshold":0,"thumbsize":5,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"watchrollback":0,
+"wllimit":250,"useeditwarning":1,"prefershttps":1,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});},{},{});
+/* cache key: wikidavidpub-wikidavidpubpt_:resourceloader:filter:minify-js:7:deb5fdde5680d0b99961b6c7484b7199 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script>
+<link rel="shortcut icon" href="/~david/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/~david/favicon.ico" type="image/x-icon">
+<script language="JavaScript" src="/~david/wiki/pt/extensions/vis/dist/vis.js" type="text/javascript"></script>
+<script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript">
+</script><script type="text/javascript">
+_uacct = "UA-19577574-1"; urchinTracker();
+</script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Compiladores_Projecto_de_Compiladores_Projecto_2015-2016_Manual_de_Referência_da_Linguagem_zu skin-foreground action-view">
+<div id='navwrapper'><!-- START FOREGROUNDTEMPLATE -->
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name">
+					<h1 class="title-name">
+				
+					</h1>
+				</li>
+				<li class="toggle-topbar menu-icon">
+					<a href="#"><span>Menu</span></a>
+				</li>
+			</ul>
+
+		
+		</nav>
+		</div>		
+		<div id="page-content">
+		<div class="row">
+				<div class="large-12 columns">
+				<!--[if lt IE 9]>
+				<div id="siteNotice" class="sitenotice panel radius">Wiki**3 may not look as expected in this version of Internet Explorer. We recommend you upgrade to a newer version of Internet Explorer or switch to a browser like Firefox or Chrome.</div>
+				<![endif]-->
+
+												</div>
+		</div>
+
+		<div id="mw-js-message" style="display:none;"></div>
+
+		<div class="row">
+				<div id="p-cactions" class="large-12 columns">
+										<h2 class="title">Manual de Referência da Linguagem "zu"</h2>
+					<div class="clear_both"></div>
+					<div class="mw-bodytext">
+						<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><table class="mw-collapsible mw-collapsed wikitable" align="right" style="border-style: solid; border-width: 1px; border-color: #bbbbaa; background: #f7f8ff; margin-bottom: 5px !important;">
+
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Tipos_de_Dados"><span class="tocnumber">1</span> <span class="toctext">Tipos de Dados</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Manipula.C3.A7.C3.A3o_de_Nomes"><span class="tocnumber">2</span> <span class="toctext">Manipulação de Nomes</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Espa.C3.A7o_de_nomes_e_visibilidade_dos_identificadores"><span class="tocnumber">2.1</span> <span class="toctext">Espaço de nomes e visibilidade dos identificadores</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Validade_das_vari.C3.A1veis"><span class="tocnumber">2.2</span> <span class="toctext">Validade das variáveis</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Conven.C3.A7.C3.B5es_Lexicais"><span class="tocnumber">3</span> <span class="toctext">Convenções Lexicais</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Caracteres_brancos"><span class="tocnumber">3.1</span> <span class="toctext">Caracteres brancos</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Coment.C3.A1rios"><span class="tocnumber">3.2</span> <span class="toctext">Comentários</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Palavras_chave"><span class="tocnumber">3.3</span> <span class="toctext">Palavras chave</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Tipos"><span class="tocnumber">3.4</span> <span class="toctext">Tipos</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Operadores_de_express.C3.B5es"><span class="tocnumber">3.5</span> <span class="toctext">Operadores de expressões</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Delimitadores_e_terminadores"><span class="tocnumber">3.6</span> <span class="toctext">Delimitadores e terminadores</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Identificadores_.28nomes.29"><span class="tocnumber">3.7</span> <span class="toctext">Identificadores (nomes)</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Literais"><span class="tocnumber">3.8</span> <span class="toctext">Literais</span></a>
+<ul>
+<li class="toclevel-3 tocsection-14"><a href="#Inteiros"><span class="tocnumber">3.8.1</span> <span class="toctext">Inteiros</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Reais_em_v.C3.ADrgula_flutuante"><span class="tocnumber">3.8.2</span> <span class="toctext">Reais em vírgula flutuante</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Cadeias_de_caracteres"><span class="tocnumber">3.8.3</span> <span class="toctext">Cadeias de caracteres</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Ponteiros"><span class="tocnumber">3.8.4</span> <span class="toctext">Ponteiros</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Gram.C3.A1tica"><span class="tocnumber">4</span> <span class="toctext">Gramática</span></a>
+<ul>
+<li class="toclevel-2 tocsection-19"><a href="#Tipos.2C_identificadores.2C_literais_e_defini.C3.A7.C3.A3o_de_express.C3.B5es"><span class="tocnumber">4.1</span> <span class="toctext">Tipos, identificadores, literais e definição de expressões</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Left-values"><span class="tocnumber">4.2</span> <span class="toctext">Left-values</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Ficheiros"><span class="tocnumber">4.3</span> <span class="toctext">Ficheiros</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Declara.C3.A7.C3.A3o_de_vari.C3.A1veis"><span class="tocnumber">4.4</span> <span class="toctext">Declaração de variáveis</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#S.C3.ADmbolos_globais"><span class="tocnumber">4.5</span> <span class="toctext">Símbolos globais</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Inicializa.C3.A7.C3.A3o"><span class="tocnumber">4.6</span> <span class="toctext">Inicialização</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-25"><a href="#Fun.C3.A7.C3.B5es"><span class="tocnumber">5</span> <span class="toctext">Funções</span></a>
+<ul>
+<li class="toclevel-2 tocsection-26"><a href="#Declara.C3.A7.C3.A3o"><span class="tocnumber">5.1</span> <span class="toctext">Declaração</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#Invoca.C3.A7.C3.A3o"><span class="tocnumber">5.2</span> <span class="toctext">Invocação</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="#Corpo"><span class="tocnumber">5.3</span> <span class="toctext">Corpo</span></a></li>
+<li class="toclevel-2 tocsection-29"><a href="#Fun.C3.A7.C3.A3o_principal_e_execu.C3.A7.C3.A3o_de_programas"><span class="tocnumber">5.4</span> <span class="toctext">Função principal e execução de programas</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-30"><a href="#Instru.C3.A7.C3.B5es"><span class="tocnumber">6</span> <span class="toctext">Instruções</span></a>
+<ul>
+<li class="toclevel-2 tocsection-31"><a href="#Blocos"><span class="tocnumber">6.1</span> <span class="toctext">Blocos</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#Instru.C3.A7.C3.A3o_condicional"><span class="tocnumber">6.2</span> <span class="toctext">Instrução condicional</span></a></li>
+<li class="toclevel-2 tocsection-33"><a href="#Instru.C3.A7.C3.A3o_de_itera.C3.A7.C3.A3o"><span class="tocnumber">6.3</span> <span class="toctext">Instrução de iteração</span></a></li>
+<li class="toclevel-2 tocsection-34"><a href="#Instru.C3.A7.C3.A3o_de_termina.C3.A7.C3.A3o"><span class="tocnumber">6.4</span> <span class="toctext">Instrução de terminação</span></a></li>
+<li class="toclevel-2 tocsection-35"><a href="#Instru.C3.A7.C3.A3o_de_continua.C3.A7.C3.A3o"><span class="tocnumber">6.5</span> <span class="toctext">Instrução de continuação</span></a></li>
+<li class="toclevel-2 tocsection-36"><a href="#Instru.C3.A7.C3.A3o_de_retorno"><span class="tocnumber">6.6</span> <span class="toctext">Instrução de retorno</span></a></li>
+<li class="toclevel-2 tocsection-37"><a href="#Express.C3.B5es_como_instru.C3.A7.C3.B5es_e_opera.C3.A7.C3.B5es_de_impress.C3.A3o"><span class="tocnumber">6.7</span> <span class="toctext">Expressões como instruções e operações de impressão</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-38"><a href="#Express.C3.B5es"><span class="tocnumber">7</span> <span class="toctext">Expressões</span></a>
+<ul>
+<li class="toclevel-2 tocsection-39"><a href="#Express.C3.B5es_primitivas"><span class="tocnumber">7.1</span> <span class="toctext">Expressões primitivas</span></a>
+<ul>
+<li class="toclevel-3 tocsection-40"><a href="#Identificadores"><span class="tocnumber">7.1.1</span> <span class="toctext">Identificadores</span></a></li>
+<li class="toclevel-3 tocsection-41"><a href="#Leitura"><span class="tocnumber">7.1.2</span> <span class="toctext">Leitura</span></a></li>
+<li class="toclevel-3 tocsection-42"><a href="#Par.C3.AAnteses_curvos"><span class="tocnumber">7.1.3</span> <span class="toctext">Parênteses curvos</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-43"><a href="#Express.C3.B5es_resultantes_de_avalia.C3.A7.C3.A3o_de_operadores"><span class="tocnumber">7.2</span> <span class="toctext">Expressões resultantes de avaliação de operadores</span></a>
+<ul>
+<li class="toclevel-3 tocsection-44"><a href="#Indexa.C3.A7.C3.A3o"><span class="tocnumber">7.2.1</span> <span class="toctext">Indexação</span></a></li>
+<li class="toclevel-3 tocsection-45"><a href="#Identidade_e_sim.C3.A9trico"><span class="tocnumber">7.2.2</span> <span class="toctext">Identidade e simétrico</span></a></li>
+<li class="toclevel-3 tocsection-46"><a href="#Reserva_de_mem.C3.B3ria"><span class="tocnumber">7.2.3</span> <span class="toctext">Reserva de memória</span></a></li>
+<li class="toclevel-3 tocsection-47"><a href="#Express.C3.A3o_de_indica.C3.A7.C3.A3o_de_posi.C3.A7.C3.A3o"><span class="tocnumber">7.2.4</span> <span class="toctext">Expressão de indicação de posição</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-48"><a href="#Exemplos"><span class="tocnumber">8</span> <span class="toctext">Exemplos</span></a>
+<ul>
+<li class="toclevel-2 tocsection-49"><a href="#Programa_com_v.C3.A1rios_m.C3.B3dulos"><span class="tocnumber">8.1</span> <span class="toctext">Programa com vários módulos</span></a></li>
+<li class="toclevel-2 tocsection-50"><a href="#Outros_testes"><span class="tocnumber">8.2</span> <span class="toctext">Outros testes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-51"><a href="#Omiss.C3.B5es_e_Erros"><span class="tocnumber">9</span> <span class="toctext">Omissões e Erros</span></a></li>
+</ul>
+</div>
+
+</td></tr></table>
+<p>A linguagem <b>zu</b> é uma linguagem imperativa e é apresentada de forma intuitiva neste manual. São apresentadas características básicas da linguagem (<a href="#Tipos_de_Dados">tipos de dados</a>, <a href="#Manipula.C3.A7.C3.A3o_de_Nomes">manipulação de nomes</a>); <a href="#Conven.C3.A7.C3.B5es_Lexicais">convenções lexicais</a>; <a href="#Gram.C3.A1tica">estrutura/sintaxe</a>; <a href="#Fun.C3.A7.C3.B5es">especificação das funções</a>; <a href="#Instru.C3.A7.C3.B5es">semântica das instruções</a>; <a href="#Express.C3.B5es">semântica das expressões</a>; e, finalmente, <a href="#Exemplos">alguns exemplos</a>.
+</p>
+<h1><span class="mw-headline" id="Tipos_de_Dados">Tipos de Dados</span></h1>
+<p>A linguagem é fracamente tipificada (são efectuadas algumas conversões implícitas). Existem 4 tipos de dados, todos compatíveis com a <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/C_(programming_language)">linguagem C</a>, e com alinhamento em memória sempre a 32 bits:
+</p>
+<ul><li> Tipos numéricos: os <b>inteiros</b>, em <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Two%27s_complement">complemento para dois</a>, ocupam 4 bytes; os <b>reais</b>, em <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Floating_point">vírgula flutuante</a>, ocupam 8 bytes (<a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a>).</li>
+<li> As <b>cadeias de caracteres</b> são vectores de caracteres terminados por <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> NULL (<b>0x00</b>, <b>\0</b>). Variáveis e literais deste tipo só podem ser utilizados em atribuições, impressões, ou como argumentos/retornos de funções.</li>
+<li> Os <b>ponteiros</b> representam endereços de objectos e ocupam 4 bytes. Podem ser objecto de operações aritméticas (deslocamentos) e permitem aceder ao valor apontado.</li></ul>
+<p>Os tipos suportados por cada operador e a operação a realizar são indicados na <a href="#Express.C3.B5es">definição das expressões</a>.
+</p>
+<h1><span class="mw-headline" id="Manipula.C3.A7.C3.A3o_de_Nomes">Manipulação de Nomes</span></h1>
+<p>Os nomes (<a href="#Identificadores">identificadores</a>) correspondem a variáveis e funções. Nos pontos que se seguem, usa-se o termo entidade para as designar indiscriminadamente, explicitando-se quando a descrição for válida apenas para um subconjunto.
+</p>
+<h2><span class="mw-headline" id="Espa.C3.A7o_de_nomes_e_visibilidade_dos_identificadores">Espaço de nomes e visibilidade dos identificadores</span></h2>
+<p>O espaço de nomes global é único, pelo que um nome utilizado para designar uma entidade num dado contexto não pode ser utilizado para designar outras (ainda que de natureza diferente).
+</p><p>Os identificadores são visíveis desde a declaração até ao fim do alcance: ficheiro (globais) ou função (locais). A reutilização de identificadores em contextos inferiores encobre declarações em contextos superiores: redeclarações locais podem encobrir as globais até ao fim de uma função. É possível utilizar símbolos globais nos contextos das funções, mas não é possível defini-los (ver <a href="#S.C3.ADmbolos_globais">símbolos globais</a>).
+</p>
+<h2><span class="mw-headline" id="Validade_das_vari.C3.A1veis">Validade das variáveis</span></h2>
+<p>As entidades globais (declaradas fora de qualquer função), existem durante toda a execução do programa. As variáveis locais a uma função existem apenas durante a sua execução. Os argumentos formais são válidos enquanto a função está activa.
+</p>
+<h1><span class="mw-headline" id="Conven.C3.A7.C3.B5es_Lexicais">Convenções Lexicais</span></h1>
+<p>Para cada grupo de elementos lexicais (<i>tokens</i>), considera-se a maior sequência de caracteres constituindo um elemento válido.
+</p>
+<h2><span class="mw-headline" id="Caracteres_brancos">Caracteres brancos</span></h2>
+<p>São considerados separadores e não representam nenhum elemento lexical: <b>mudança de linha</b> ASCII LF (<b>0x0A</b>, <b>\n</b>), <b>recuo do carreto</b> ASCII CR (<b>0x0D</b>, <b>\r</b>), <b>espaço</b> ASCII SP (<b>0x20</b>, |_|) e <b>tabulação horizontal</b> ASCII HT (<b>0x09</b>, <b>\t</b>).
+</p>
+<h2><span class="mw-headline" id="Coment.C3.A1rios">Comentários</span></h2>
+<p>Existem dois tipos de comentários, que também funcionam como elementos separadores:
+</p>
+<ul><li> <b>explicativos</b> -- começam com <b>//</b> e acabam no fim da linha; e</li>
+<li> <b>operacionais</b> -- começam com <b>/*</b> e terminam com <b>*/</b>, podendo estar aninhados.</li></ul>
+<p>Se as sequências de início fizerem parte de uma cadeia de caracteres, não iniciam um comentário (ver definição das <a href="#Cadeias_de_caracteres">cadeias de caracteres</a>).
+</p>
+<h2><span class="mw-headline" id="Palavras_chave">Palavras chave</span></h2>
+<p>A linguagem não tem palavras chave. Todas as palavras correspondem a identificadores.
+</p><p>O identificador <b>zu</b>, embora não reservado, corresponde à <a href="#Fun.C3.A7.C3.A3o_principal_e_execu.C3.A7.C3.A3o_de_programas">função principal</a>.
+</p>
+<h2><span class="mw-headline" id="Tipos">Tipos</span></h2>
+<p>Os seguintes elementos lexicais designam tipos em declarações (ver <a href="#Gram.C3.A1tica">gramática</a>): <b>#</b> (inteiro), <b>%</b> (real), <b>$</b> (cadeia de caracteres).
+</p><p>Os tipos correspondentes a ponteiros são delimitados por <b>&lt;</b> e por <b>&gt;</b> (ver <a href="#Gram.C3.A1tica">gramática</a>).
+</p>
+<h2><span class="mw-headline" id="Operadores_de_express.C3.B5es">Operadores de expressões</span></h2>
+<p>São considerados operadores os elementos lexicais apresentados na <a href="#Express.C3.B5es">definição das expressões</a>.
+</p>
+<h2><span class="mw-headline" id="Delimitadores_e_terminadores">Delimitadores e terminadores</span></h2>
+<p>Os seguintes elementos lexicais são delimitadores/terminadores: <b>,</b> (vírgula), <b>;</b> (ponto e vírgula), <b>!</b> e <b>!!</b> (operações de impressão), e <b>(</b> e <b>)</b> (delimitadores de expressões).
+</p>
+<h2><span class="mw-headline" id="Identificadores_.28nomes.29">Identificadores (nomes)</span></h2>
+<p>São iniciados por uma letra ou por <b>_</b> (sublinhado), seguindo-se 0 (zero) ou mais letras, dígitos ou <b>_</b> (sublinhado). O comprimento do nome é ilimitado e dois nomes são distintos se houver alteração de maiúscula para minúscula, ou vice-versa, de pelo menos um carácter.
+</p>
+<h2><span class="mw-headline" id="Literais">Literais</span></h2>
+<p>São notações para valores constantes de alguns tipos da linguagem (não confundir com constantes, i.e., identificadores que designam elementos cujo valor não pode ser alterado durante a execução do programa).
+</p>
+<h3><span class="mw-headline" id="Inteiros">Inteiros</span></h3>
+<p>Um literal inteiro é um número não negativo. Uma constante inteira pode, contudo, ser negativa: números negativos são construídos pela aplicação do operador menos unário (<b>-</b>) a um literal positivo.
+</p><p>Literais inteiros decimais são constituídos por sequências de 1 (um) ou mais dígitos de <b>0</b> a <b>9</b>, em que o primeiro dígito não é <b>0</b> (zero), excepto no caso do número 0 (zero). Neste caso, é composto apenas pelo dígito <b>0</b> (zero) (em qualquer base).
+</p><p>Literais inteiros hexadecimais começam sempre com a sequência <b>0x</b>, seguida de um ou mais digitos de <b>0</b> a <b>9</b> ou de <b>a</b> a <b>f</b> (sem distinguir maiúsculas de minúsculas). As letras de <b>a</b> a <b>f</b> representam os valores de 10 a 15 respectivamente. Exemplo: <b>0x07</b>.
+</p><p>Se não for possível representar o literal inteiro na máquina, devido a um overflow, deverá ser gerado um erro lexical.
+</p>
+<h3><span class="mw-headline" id="Reais_em_v.C3.ADrgula_flutuante">Reais em vírgula flutuante</span></h3>
+<p>Os literais reais são expressos em notação científica (tal como em C).
+Exemplo: <b>12.34e-24</b> = 12.34 x 10<sup>-24</sup>.
+</p><p>Um literal sem <b>.</b> (ponto decimal) nem parte exponencial é do tipo inteiro.
+</p>
+<h3><span class="mw-headline" id="Cadeias_de_caracteres">Cadeias de caracteres</span></h3>
+<p>As cadeias de caracteres são delimitadas por aspas (<b>"</b>) e podem conter quaisquer caracteres, excepto ASCII NULL (<b>0x00</b> <b>\0</b>). Nas cadeias, os delimitadores de comentários não têm significado especial. Se for escrito um literal que contenha <b>\0</b>, então a cadeia termina nessa posição. Exemplo: <b>"ab\0xy"</b> tem o mesmo significado que <b>"ab"</b>.
+</p><p>É possível designar caracteres por sequências especiais (iniciadas por <b>\</b>), especialmente úteis quando não existe representação gráfica directa. As sequências especiais correspondem aos caracteres ASCII LF, CR e HT (<b>\n</b>, <b>\r</b> e <b>\t</b>, respectivamente), aspa (<b>\"</b>), barra (<b>\\</b>), ou a quaisquer outros especificados através de 1 ou 2 digitos hexadecimais (e.g. <b>\0a</b> ou apenas <b>\a</b> se o carácter seguinte não representar um dígito hexadecimal).
+</p><p>Elementos lexicais distintos que representem duas ou mais cadeias consecutivas são representadas na linguagem como uma única cadeia que resulta da concatenação. Exemplo: <b>"ab"</b>|_|<b>"cd"</b> é o mesmo que <b>"abcd"</b>.
+</p>
+<h3><span class="mw-headline" id="Ponteiros">Ponteiros</span></h3>
+<p>O único literal admissível para ponteiros é <b>0</b>, indicando o ponteiro nulo.
+</p>
+<h1><span class="mw-headline" id="Gram.C3.A1tica">Gramática</span></h1>
+<p>A gramática da linguagem está resumida abaixo. Considerou-se que os elementos em tipo fixo são literais, que os parênteses curvos agrupam elementos, que elementos alternativos são separados por uma barra vertical, que elementos opcionais estão entre parênteses rectos, que os elementos que se repetem zero ou mais vezes estão entre < e >. Alguns elementos usados na gramática também são elementos da linguagem descrita se representados em tipo fixo (e.g., parênteses).
+</p>
+<table>
+<tr>
+<th style="width: 140px; font-weight: normal;"> <i>ficheiro</i>
+</th>
+<th style="width: 50px; font-weight: normal;"> -->
+</th>
+<td> < <i>declaração</i> >
+</td></tr>
+<tr>
+<th style="width: 150px; font-weight: normal;"> <i>declaração</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <i>variável</i> <b>;</b> | <i>função</i>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>variável</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <i>tipo</i> <i>identificador</i> [ <b>!</b> | <b>?</b> ] [ <b>=</b> <i>expressão</i> ]
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>função</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> ( <i>tipo</i> | <b>!</b> ) <i>identificador</i> [ <b>!</b> | <b>?</b> ] <b>(</b> [ <i>variáveis</i> ] <b>)</b> [ <b>=</b> <i>literal</i> ] [ <i>corpo</i> ]
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>variáveis</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <i>variável</i> < <b>,</b> <i>variável</i> >
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>tipo</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <b>#</b> | <b>%</b> | <b>$</b> | <b>&lt;</b> <i>tipo</i> <b>&gt;</b>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>corpo</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <i>bloco</i>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>bloco</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <b>{</b> < <i>declaração</i> > < <i>instrução</i> > <b>}</b>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>instrução</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <i>expressão</i> <b>;</b> | <i>expressão</i> <b>!</b> | <i>expressão</i> <b>!!</b>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;">
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <b>&gt;&lt;</b> | <b>&lt;&gt;</b> | <b>!!!</b>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;">
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <i>instrução-condicional</i> | <i>instrução-de-iteração</i> | <i>bloco</i>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>instrução-condicional</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <b>[</b> <i>expressão</i> <b>]</b> <b>#</b> <i>instrução</i>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;">
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <b>[</b> <i>expressão</i> <b>]</b> <b>?</b> <i>instrução</i> [ <b>:</b> <i>instrução</i> ]
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>instrução-de-iteração</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <b>[</b> [ <i>variáveis</i> ] <b>;</b> [ <i>expressões</i> ] <b>;</b> [ <i>expressões</i> ] <b>]</b> <i>instrução</i>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;">
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <b>[</b> [ <i>expressões</i> ] <b>;</b> [ <i>expressões</i> ] <b>;</b> [ <i>expressões</i> ] <b>]</b> <i>instrução</i>
+</td></tr>
+<tr>
+<th style="width: 50px; font-weight: normal;"> <i>expressões</i>
+</th>
+<th style="width: 50px; font-weight: normal;">-->
+</th>
+<td> <i>expressão</i> < <b>,</b> <i>expressão</i> >
+</td></tr></table>
+<h2><span class="mw-headline" id="Tipos.2C_identificadores.2C_literais_e_defini.C3.A7.C3.A3o_de_express.C3.B5es">Tipos, identificadores, literais e definição de expressões</span></h2>
+<p>Algumas definições foram omitidas da gramática: <a href="#Tipos_de_dados">tipos de dados</a>, <i>identificador</i> (ver <a href="#Identificadores">identificadores</a>), <i>literal</i> (ver <a href="#Literais">literais</a>); <i>expressão</i> (ver <a href="#Express.C3.B5es">expressões</a>).
+</p>
+<h2><span class="mw-headline" id="Left-values">Left-values</span></h2>
+<p>Os <i>left-values</i> são posições de memória que podem ser modificadas (excepto onde proibido pelo tipo de dados). Os elementos de uma expressão que podem ser utilizados como <i>left-values</i> encontram-se individualmente identificados na <a href="#Express.C3.B5es">semântica das expressões</a>.
+</p>
+<h2><span class="mw-headline" id="Ficheiros">Ficheiros</span></h2>
+<p>Um ficheiro é designado por principal se contiver a <a href="#Fun.C3.A7.C3.A3o_principal_e_execu.C3.A7.C3.A3o_de_programas">função principal</a> (a que inicia o programa).
+</p>
+<h2><span class="mw-headline" id="Declara.C3.A7.C3.A3o_de_vari.C3.A1veis">Declaração de variáveis</span></h2>
+<p>Uma declaração de variável indica sempre um <a href="#Tipos_de_dados">tipo de dados</a> e um <a href="#Manipula.C3.A7.C3.A3o_de_nomes">identificador</a>.
+</p><p>Exemplos:
+</p>
+<ul><li> Inteiro: <b>#i</b></li>
+<li> Real: <b>%r</b></li>
+<li> Cadeia de caracteres: <b>$s</b></li>
+<li> Ponteiro para inteiro: <b>&lt;#&gt;p1</b> (equivalente a <b>int*</b> em C)</li>
+<li> Ponteiro para real: <b>&lt;%&gt;p2</b> (equivalente a <b>double*</b> em C)</li>
+<li> Ponteiro para cadeia de caracteres: <b>&lt;$&gt;p3</b> (equivalente a <b>char**</b> em C)</li>
+<li> Ponteiro para ponteiro para inteiro: <b>&lt;&lt;#&gt;&gt;p4</b> (equivalente a <b>int**</b> em C)</li></ul>
+<h2><span class="mw-headline" id="S.C3.ADmbolos_globais">Símbolos globais</span></h2>
+<p>Por omissão, os símbolos são privados a um módulo, não podendo ser importados por outros módulos.
+</p><p>O marcador <b>!</b> permite declarar um identificador como público, tornando-o acessível a partir de outros módulos.
+</p><p>O marcador <b>?</b> (opcional para funções) permite declarar num módulo entidades definidas em outros módulos. As entidades não podem ser inicializadas numa declaração importada.
+</p><p>Exemplos:
+</p>
+<ul><li> Declarar variável privada ao módulo: <b>%pi = 22/7   /*</b> <a rel="nofollow" class="external autonumber" href="http://en.wikipedia.org/wiki/Proof_that_22/7_exceeds_%CF%80">[2]</a> <b>*/</b></li>
+<li> Declarar variável pública: <b>%pi! = 22/7   /*</b> <a rel="nofollow" class="external autonumber" href="http://en.wikipedia.org/wiki/Proof_that_22/7_exceeds_%CF%80">[3]</a> <b>*/</b></li>
+<li> Usar definição externa: <b>%pi?</b></li></ul>
+<h2><span class="mw-headline" id="Inicializa.C3.A7.C3.A3o">Inicialização</span></h2>
+<p>Quando existe, é uma expressão que segue o sinal <b>=</b> ("igual"): inteira, real, ponteiro. Entidades reais podem ser inicializadas por expressões inteiras (conversão implícita). A expressão de inicialização deve ser um literal se a variável for global.
+</p><p>As <a href="#Cadeias_de_caracteres">cadeias de caracteres</a> são (possivelmente) inicializadas com uma lista não nula de valores sem separadores. 
+</p><p>Exemplos:
+</p>
+<ul><li> Inteiro (literal): <b>#i = 3</b></li>
+<li> Inteiro (expressão): <b># i = j+1</b></li>
+<li> Real (literal): <b>%r = 3.2</b></li>
+<li> Real (expressão): <b>%r = i - 2.5 + f(3)</b></li>
+<li> Cadeia de caracteres (literal): <b>$s = "olá"</b></li>
+<li> Cadeia de caracteres (literais): <b>$s = "olá" "mãe"</b></li>
+<li> Ponteiro (literal): <b>&lt;&lt;&lt;%&gt;&gt;&gt;p = 0</b></li>
+<li> Ponteiro (expressão): <b>&lt;#&gt;p = q + 1</b></li></ul>
+<h1><span class="mw-headline" id="Fun.C3.A7.C3.B5es">Funções</span></h1>
+<p>Uma função permite agrupar um conjunto de instruções num corpo, executado com base num conjunto de parâmetros (os argumentos formais), quando é invocada a partir de uma expressão.
+</p>
+<h2><span class="mw-headline" id="Declara.C3.A7.C3.A3o">Declaração</span></h2>
+<p>As funções são sempre designadas por identificadores constantes precedidos do tipo de dados devolvido pela função. Se a função não devolver um valor, usar-se o marcador de tipo especial <b>!</b> para o indicar.
+</p><p>As funções que recebam argumentos devem indicá-los no cabeçalho. Funções sem argumentos definem um cabeçalho vazio. Não é possível aplicar os qualificadores de exportação/importação <b>!</b> ou <b>?</b> (ver <a href="#S.C3.ADmbolos_globais">símbolos globais</a>) às declarações dos argumentos de uma função.
+</p><p>A declaração de uma função sem corpo é utilizada para tipificar um identificador exterior ou para efectuar declarações antecipadas (utilizadas para pré-declarar funções que sejam usadas antes de ser definidas, por exemplo, entre duas funções mutuamente recursivas). Caso a declaração tenha corpo, define-se uma nova função (neste caso, não pode utilizar-se o qualificador <b>?</b>).
+</p>
+<h2><span class="mw-headline" id="Invoca.C3.A7.C3.A3o">Invocação</span></h2>
+<p>A função só pode ser invocada através de um identificador que refira uma função previamente declarada ou definida.
+</p><p>Se existirem argumentos, na invocação da função, o identificador é seguido de uma lista de expressões delimitadas por parênteses curvos. Esta lista é uma sequência, possivelmente vazia, de expressões separadas por vírgulas. O número e tipo de parâmetros actuais deve ser igual ao número e tipo dos parâmetros formais da função invocada. A ordem dos parâmetros actuais deverá ser a mesma dos argumentos formais da função a ser invocada.
+</p><p>De acordo com a convenção Cdecl, a função chamadora coloca os argumentos na pilha e é responsável pela sua remoção, após o retorno da chamada. Assim, os parâmetros actuais devem ser colocados na pilha pela ordem inversa da sua declaração (i.e., são avaliados da direita para a esquerda antes da invocação da função e o resultado passado por cópia/valor). O endereço de retorno é colocado no topo da pilha pela chamada à função.
+</p>
+<h2><span class="mw-headline" id="Corpo">Corpo</span></h2>
+<p>O corpo de uma função consiste num bloco que contém declarações (opcionais) seguidas de instruções (opcionais). Não é possível aplicar os qualificadores de exportação (<b>!</b>) ou de importação (<b>?</b>) (ver <a href="#S.C3.ADmbolos_globais">símbolos globais</a>) dentro do corpo de uma função.
+</p><p>O valor devolvido por uma função, através de atribuição ao <i>left-value</i> especial com o nome da função, deve ser do tipo declarado.
+</p><p>Se existir um valor declarado por omissão para o retorno da função (indicado pela notação <b>=</b> seguindo a assinatura da função), então deve ser utilizado se não for especificado outro. A especificação do valor de retorno por omissão é obrigatoriamente um literal do tipo indicado. É um erro especificar um valor de retorno se a função for declarada como não retornando um valor (tipo indicado como <b>!</b>). Uma função cujo retorno seja inteiro ou ponteiro retorna 0 (zero) por omissão (i.e., se não for especificado o valor de retorno). Em todos os outros casos, o valor de retorno é indeterminado se não for definido explicitamente.
+</p><p>Uma instrução <b>!!!</b> causa a interrupção da função e o retorno do seu valor actual ao chamador.
+</p><p>Qualquer bloco (usado, por exemplo, numa instrução condicional ou de iteração) pode definir variáveis.
+</p>
+<h2><span class="mw-headline" id="Fun.C3.A7.C3.A3o_principal_e_execu.C3.A7.C3.A3o_de_programas">Função principal e execução de programas</span></h2>
+<p>Um programa inicia-se com a invocação da função <b>zu</b> (sem argumentos). Os argumentos com que o programa foi chamado podem ser obtidos através de funções <b>#argc()</b> (devolve o número de argumentos); <b>$argv(#n)</b> (devolve o n-ésimo argumento como uma cadeia de caracteres) (<b>n&gt;0</b>); e <b>$envp(#n)</b> (devolve a n-ésima variável de ambiente como uma cadeia de caracteres) (<b>n&gt;0</b>).
+</p><p>O valor de retorno da função principal é devolvido ao ambiente que invocou o programa. Este valor de retorno segue as seguintes regras (sistema operativo): 0 (zero), execução sem erros; 1 (um), argumentos inválidos (em número ou valor); 2 (dois), erro de execução. Os valores superiores a 128 indicam que o programa terminou com um sinal. Em geral, para correcto funcionamento, os programas devem devolver 0 (zero) se a execução foi bem sucedida e um valor diferente de 0 (zero) em caso de erro.
+</p><p>A <a href="/~david/w/pt/Compiladores/Projecto_de_Compiladores/Material_de_Apoio_ao_Desenvolvimento" title="Compiladores/Projecto de Compiladores/Material de Apoio ao Desenvolvimento">biblioteca de run-time</a> (RTS) contém informação sobre outras funções de suporte disponíveis, incluindo chamadas ao sistema (ver também o <a href="/~david/w/pt/Manual_da_RTS" title="Manual da RTS">manual da RTS</a>).
+</p>
+<h1><span class="mw-headline" id="Instru.C3.A7.C3.B5es">Instruções</span></h1>
+<p>Excepto quando indicado, as instruções são executadas em sequência.
+</p>
+<h2><span class="mw-headline" id="Blocos">Blocos</span></h2>
+<p>Cada bloco tem uma zona de declarações de variáveis locais (facultativa), seguida por uma zona com instruções (possivelmente vazia). Não é possível declarar ou definir funções dentro de blocos.
+</p><p>A visibilidade das variáveis é limitada ao bloco em que foram declaradas. As entidades declaradas podem ser directamente utilizadas em sub-blocos ou passadas como argumentos para funções chamadas dentro do bloco. Caso os identificadores usados para definir as variáveis locais já estejam a ser utilizados para definir outras entidades ao alcance do bloco, o novo identificador passa a referir uma nova entidade definida no bloco até ao que ele termine (a entidade previamente definida continua a existir, mas não pode ser directamente referida pelo seu nome). Esta regra é também válida relativamente a argumentos de funções (ver <a href="#Corpo">corpo das funções</a>).
+</p>
+<h2><span class="mw-headline" id="Instru.C3.A7.C3.A3o_condicional">Instrução condicional</span></h2>
+<p>Esta instrução tem comportamento idêntico ao da instrução <b>if-else</b> em C.
+</p>
+<h2><span class="mw-headline" id="Instru.C3.A7.C3.A3o_de_itera.C3.A7.C3.A3o">Instrução de iteração</span></h2>
+<p>Esta instrução tem comportamento idêntico ao da instrução <b>for</b> em C.
+</p>
+<h2><span class="mw-headline" id="Instru.C3.A7.C3.A3o_de_termina.C3.A7.C3.A3o">Instrução de terminação</span></h2>
+<p>A instrução <b>&gt;&lt;</b> termina o ciclo mais interior em que a instrução se encontrar, tal como a instrução <b>break</b> em C. Esta instrução só pode existir dentro de um ciclo, sendo a última instrução do seu bloco.
+</p>
+<h2><span class="mw-headline" id="Instru.C3.A7.C3.A3o_de_continua.C3.A7.C3.A3o">Instrução de continuação</span></h2>
+<p>A instrução <b>&lt;&gt;</b> reinicia o ciclo mais interior em que a instrução se encontrar, tal como a instrução <b>continue</b> em C. Esta instrução só pode existir dentro de um ciclo, sendo a última instrução do seu bloco.
+</p>
+<h2><span class="mw-headline" id="Instru.C3.A7.C3.A3o_de_retorno">Instrução de retorno</span></h2>
+<p>A instrução <b>!!!</b>, se existir, é a última instrução do seu bloco. Ver comportamento na <a href="#Corpo">descrição do corpo de uma função</a>.
+</p>
+<h2><span class="mw-headline" id="Express.C3.B5es_como_instru.C3.A7.C3.B5es_e_opera.C3.A7.C3.B5es_de_impress.C3.A3o">Expressões como instruções e operações de impressão</span></h2>
+<p>As expressões utilizadas como instruções são avaliadas, mesmo que não produzam efeitos secundários, e, eventualmente, o seu valor impresso (quando seguidas de <b>!</b> ou <b>!!</b> -- impressão sem/com mudança de linha). Valores numéricos (inteiros ou reais) são impressos em decimal. As cadeias de caracteres são impressas na codificação nativa. Ponteiros não podem ser impressos.
+</p>
+<h1><span class="mw-headline" id="Express.C3.B5es">Expressões</span></h1>
+<p>Uma expressão é uma representação algébrica de uma quantidade: todas as expressões têm um tipo e devolvem um valor.
+</p><p>Existem <a href="#Express.C3.B5es_primitivas">expressões primitivas</a> e expressões que resultam da  <a href="#Express.C3.B5es_resultantes_de_avalia.C3.A7.C3.A3o_de_operadores">avaliação de operadores</a>.
+</p><p>A tabela seguinte apresenta as precedências relativas dos operadores: é a mesma para operadores na mesma linha, sendo as linhas seguintes de menor prioridade que as anteriores. A maioria dos operadores segue a semântica da linguagem C (excepto onde explicitamente indicado). Tal como em C, os valores lógicos são 0 (zero) (valor falso), e diferente de zero (valor verdadeiro).
+</p>
+<table>
+<tr>
+<td> <b>Tipo de Expressão</b>
+</td>
+<td> <b>Operadores</b>
+</td>
+<td> <b>Associatividade</b>
+</td>
+<td> <b>Operandos</b>
+</td>
+<td> <b>Semântica</b>
+</td></tr>
+<tr>
+<td> primária
+</td>
+<td> <b>( ) [ ]</b>
+</td>
+<td> não associativos
+</td>
+<td> -
+</td>
+<td> <a href="#Par.C3.AAnteses_curvos">parênteses curvos</a>, <a href="#Indexa.C3.A7.C3.A3o">indexação</a>, <a href="#Reserva_de_mem.C3.B3ria">reserva de memória</a>
+</td></tr>
+<tr>
+<td> unária
+</td>
+<td> <b>+ -&#160;?</b>
+</td>
+<td> não associativos
+</td>
+<td> -
+</td>
+<td> <a href="#Identidade_e_sim.C3.A9trico">identidade e simétrico</a>, <a href="#Express.C3.A3o_de_indica.C3.A7.C3.A3o_de_posi.C3.A7.C3.A3o">indicação de posição</a>
+</td></tr>
+<tr>
+<th style="vertical-align: top; font-weight: normal;"> multiplicativa
+</th>
+<th style="vertical-align: top; font-weight: normal;"> <b>* /&#160;%</b>
+</th>
+<th style="vertical-align: top; font-weight: normal;"> da esquerda para a direita
+</th>
+<th style="vertical-align: top; font-weight: normal;"> inteiros, reais
+</th>
+<th style="vertical-align: top; font-weight: normal;"> C (% é apenas para inteiros)
+</th></tr>
+<tr>
+<th style="vertical-align: top; font-weight: normal;"> aditiva
+</th>
+<th style="vertical-align: top; font-weight: normal;"> <b>+ -</b>
+</th>
+<th style="vertical-align: top; font-weight: normal;"> da esquerda para a direita
+</th>
+<th style="vertical-align: top; font-weight: normal;"> inteiros, reais, ponteiros
+</th>
+<th style="vertical-align: top; font-weight: normal;"> C: se envolverem ponteiros, calculam: (i) deslocamentos, i.e., um dos operandos deve ser do tipo ponteiro e o outro do tipo inteiro; (ii) diferenças de ponteiros, i.e., apenas quando se aplica o operador <b>-</b> a dois ponteiros do mesmo tipo (o resultado é o número de objectos do tipo apontado entre eles). Se a memória não for contígua, o resultado é indefinido.
+</th></tr>
+<tr>
+<th style="vertical-align: top; font-weight: normal;"> comparativa
+</th>
+<th style="vertical-align: top; font-weight: normal;"> <b>&lt; &gt; &lt;= &gt;=</b>
+</th>
+<th style="vertical-align: top; font-weight: normal;"> da esquerda para a direita
+</th>
+<th style="vertical-align: top; font-weight: normal;"> inteiros, reais
+</th>
+<th style="vertical-align: top; font-weight: normal;"> C
+</th></tr>
+<tr>
+<th style="vertical-align: top; font-weight: normal;"> igualdade
+</th>
+<th style="vertical-align: top; font-weight: normal;"> <b>==&#160;!=</b>
+</th>
+<th style="vertical-align: top; font-weight: normal;"> da esquerda para a direita
+</th>
+<th style="vertical-align: top; font-weight: normal;"> inteiros, reais, ponteiros
+</th>
+<th style="vertical-align: top; font-weight: normal;"> C
+</th></tr>
+<tr>
+<th style="vertical-align: top; font-weight: normal;"> "não" lógico
+</th>
+<th style="vertical-align: top; font-weight: normal;"> <b>~</b>
+</th>
+<th style="vertical-align: top; font-weight: normal;"> não associativo
+</th>
+<th style="vertical-align: top; font-weight: normal;"> inteiros
+</th>
+<th style="vertical-align: top; font-weight: normal;"> C
+</th></tr>
+<tr>
+<th style="vertical-align: top; font-weight: normal;"> "e" lógico
+</th>
+<th style="vertical-align: top; font-weight: normal;"> <b>&amp;</b>
+</th>
+<th style="vertical-align: top; font-weight: normal;"> da esquerda para a direita
+</th>
+<th style="vertical-align: top; font-weight: normal;"> inteiros
+</th>
+<th style="vertical-align: top; font-weight: normal;"> C: o 2º argumento só é avaliado se o 1º não for falso.
+</th></tr>
+<tr>
+<th style="vertical-align: top; font-weight: normal;"> "ou" lógico
+</th>
+<th style="vertical-align: top; font-weight: normal;"> <b>|</b>
+</th>
+<th style="vertical-align: top; font-weight: normal;"> da esquerda para a direita
+</th>
+<th style="vertical-align: top; font-weight: normal;"> inteiros
+</th>
+<th style="vertical-align: top; font-weight: normal;"> C: o 2º argumento só é avaliado se o 1º não for verdadeiro.
+</th></tr>
+<tr>
+<th style="vertical-align: top; font-weight: normal;"> atribuição
+</th>
+<th style="vertical-align: top; font-weight: normal;"> <b>=</b>
+</th>
+<th style="vertical-align: top; font-weight: normal;"> da direita para a esquerda
+</th>
+<th style="vertical-align: top; font-weight: normal;"> todos os tipos
+</th>
+<th style="vertical-align: top; font-weight: normal;"> O valor da expressão do lado direito do operador é guardado na posição indicada pelo <i>left-value</i> (operando esquerdo do operador). Podem ser atribuídos valores inteiros a <i>left-values</i> reais (conversão automática). Nos outros casos, ambos os tipos têm de concordar.
+</th></tr></table>
+<h2><span class="mw-headline" id="Express.C3.B5es_primitivas">Expressões primitivas</span></h2>
+<p>As <a href="#Literais">expressões literais</a> e a <a href="#Invoca.C3.A7.C3.A3o">invocação de funções</a> foram definidas acima.
+</p>
+<h3><span class="mw-headline" id="Identificadores">Identificadores</span></h3>
+<p>Um identificador é uma expressão se tiver sido declarado. Um identificador pode denotar uma variável ou uma constante.
+</p><p>Um identificador é o caso mais simples de um <i><a href="#Left-values">left-value</a></i>, ou seja, uma entidade que pode ser utilizada no lado esquerdo (<i>left</i>) de uma atribuição. O valor de retorno de uma função é definido por um <i>left-value</i> especial (ver também definições relativas ao <a href="#Corpo">corpo das funções</a>).
+</p>
+<h3><span class="mw-headline" id="Leitura">Leitura</span></h3>
+<p>A operação de leitura de um valor inteiro ou real pode ser efectuado pela expressão <b>@</b>, que devolve o valor lido, de acordo com o tipo esperado (inteiro ou real). Caso se use como argumento dos operadores de impressão (<b>!</b> ou <b>!!</b>), deve ser lido um inteiro.
+</p><p>Exemplos:  <b>a = @</b> (leitura para <b>a</b>), <b>f(@)</b> (leitura para argumento de função), <b>@!!</b> (leitura e impressão).
+</p>
+<h3><span class="mw-headline" id="Par.C3.AAnteses_curvos">Parênteses curvos</span></h3>
+<p>Uma expressão entre parênteses curvos tem o valor da expressão sem os parênteses e permite alterar a prioridade dos operadores. Uma expressão entre parênteses não pode ser utilizada como <i>left-value</i> (ver também a <a href="#Indexa.C3.A7.C3.A3o">expressão de indexação</a>).
+</p>
+<h2><span class="mw-headline" id="Express.C3.B5es_resultantes_de_avalia.C3.A7.C3.A3o_de_operadores">Expressões resultantes de avaliação de operadores</span></h2>
+<h3><span class="mw-headline" id="Indexa.C3.A7.C3.A3o">Indexação</span></h3>
+<p>A indexação devolve o valor de uma posição de memória indicada por um ponteiro. Consiste de uma expressão ponteiro seguida do índice entre parênteses rectos. O resultado de uma indexação é um <i><a href="#Left-values">left-value</a></i>.
+</p><p>Exemplo (acesso à posição indicada por <b>p</b>): <b>p[0]</b>
+</p>
+<h3><span class="mw-headline" id="Identidade_e_sim.C3.A9trico">Identidade e simétrico</span></h3>
+<p>Os operadores identidade (<b>+</b>) e simétrico (<b>-</b>) aplicam-se a inteiros e reais. Têm o mesmo significado que em C.
+</p>
+<h3><span class="mw-headline" id="Reserva_de_mem.C3.B3ria">Reserva de memória</span></h3>
+<p>A expressão reserva de memória <b>[]</b> devolve o ponteiro que aponta para a zona de memória, na pilha da função actual, contendo espaço suficiente para o número de objectos indicados pelo seu argumento inteiro.
+</p><p>Exemplo (reserva vector com 5 reais, apontados por <b>p</b>): <b>&lt;%&gt;p=[5]</b>
+</p>
+<h3><span class="mw-headline" id="Express.C3.A3o_de_indica.C3.A7.C3.A3o_de_posi.C3.A7.C3.A3o">Expressão de indicação de posição</span></h3>
+<p>O operador sufixo <b>?</b> aplica-se a <i>left-values</i>, retornando o endereço correspondente.
+</p><p>Exemplo (indica o endereço de <b>a</b>): <b>a?</b>
+</p>
+<h1><span class="mw-headline" id="Exemplos">Exemplos</span></h1>
+<p>Os exemplos não são exaustivos e não ilustram todos os aspectos da linguagem. Podem obter-se outros na página da disciplina.
+</p>
+<h2><span class="mw-headline" id="Programa_com_v.C3.A1rios_m.C3.B3dulos">Programa com vários módulos</span></h2>
+<p>Definição da função <i>factorial</i> num ficheiro (<b>factorial.zu</b>):
+</p>
+<pre>#factorial!(#n) = 1 {
+  [n &gt; 1]&#160;? factorial = n * factorial(n-1);&#160;: factorial = 1;
+}
+</pre>
+<p>Exemplo da utilização da função <i>factorial</i> num outro ficheiro (<b>main.zu</b>):
+</p>
+<pre>// external builtin functions
+#argc?()
+$argv?(#n)
+#atoi?($s)
+
+// external user functions
+#factorial?(#n)
+
+// the main function
+#zu!() = 0 {
+  #f = 1;
+  "Teste para a função factorial"!!
+  [argc() == 2] # f = atoi(argv(1));
+  f! "! = "! factorial(f)!!
+}
+</pre>
+
+		</body>
+		</html>
+
