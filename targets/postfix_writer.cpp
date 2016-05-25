@@ -19,7 +19,7 @@ void zu::postfix_writer::do_sequence_node(cdk::sequence_node * const node, int l
 //---------------------------------------------------------------------------
 
 void zu::postfix_writer::do_integer_node(cdk::integer_node * const node, int lvl) {
-  //FIXME handle local / global vars ?
+ 
   CHECK_TYPES(_compiler, _symtab, node);
   if (_inside)
     _pf.INT(node->value());
@@ -28,7 +28,7 @@ void zu::postfix_writer::do_integer_node(cdk::integer_node * const node, int lvl
 }
 
 void zu::postfix_writer::do_double_node(cdk::double_node * const node, int lvl) {
-  //FIXME handle local / global vars ?
+  
   CHECK_TYPES(_compiler, _symtab, node);
   if (_inside) {
     int dlbl = ++_lbl;
@@ -46,7 +46,7 @@ void zu::postfix_writer::do_double_node(cdk::double_node * const node, int lvl) 
 }
 
 void zu::postfix_writer::do_string_node(cdk::string_node * const node, int lvl) {
-  //FIXME handle local / global vars ?
+ 
   CHECK_TYPES(_compiler, _symtab, node);
   int strlbl = ++_lbl;
   _pf.RODATA();
@@ -383,10 +383,7 @@ void zu::postfix_writer::do_index_node(zu::index_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   node->address()->accept(this, lvl);
   if (dynamic_cast<zu::lvalue_node *>(node->address())) {
-    /*if (node->type()->name() == basic_type::TYPE_DOUBLE)
-      _pf.DLOAD();
-    else*/
-      _pf.LOAD();
+    _pf.LOAD();
   }
   node->index()->accept(this, lvl);
   if (node->type()->name() == basic_type::TYPE_DOUBLE)
@@ -399,7 +396,7 @@ void zu::postfix_writer::do_index_node(zu::index_node * const node, int lvl) {
     std::cerr << "ERROR: CANNOT HAPPEN! [index]" << std::endl;
     exit(1);
   }
-  //std::cout << "index : MUL" << std::endl;
+  
   _pf.MUL();
   _pf.ADD();
 }
@@ -416,7 +413,7 @@ void zu::postfix_writer::do_funcall_node(zu::funcall_node * const node, int lvl)
     std::shared_ptr<zu::symbol> symbol = _symtab.find("."+node->id());
     size_t sz = node->args()->size();
     for (size_t i=0; i<sz; i++) {
-      // FIXME i2d where needed
+      
       node->args()->node(sz-i-1)->accept(this, lvl);
       if (symbol->get_arg(i)->name() == basic_type::TYPE_DOUBLE &&
           ((cdk::expression_node *)node->args()->node(sz-i-1))->type()->name() == basic_type::TYPE_INT)
@@ -446,9 +443,9 @@ void zu::postfix_writer::do_funcall_node(zu::funcall_node * const node, int lvl)
 
 void zu::postfix_writer::do_fundecl_node(zu::fundecl_node * const node, int lvl) {  
   CHECK_TYPES(_compiler, _symtab, node);
-  //arguments handled by type_checker
+  
   _externs[node->id()]=1;
-  // FIXME handle public/private
+ 
   
 }
 
@@ -535,7 +532,7 @@ void zu::postfix_writer::do_vardecl_node(zu::vardecl_node * const node, int lvl)
       _pf.ALIGN();
       _pf.ADDR(mklbl(strlabel));
     }
-    //symbol->offset(_offset-=symbol->type()->size());
+    
     _pf.LOCAL(symbol->offset());
     if (symbol->type()->name() == basic_type::TYPE_DOUBLE)
       _pf.DSTORE();
@@ -562,7 +559,7 @@ void zu::postfix_writer::do_vardecl_node(zu::vardecl_node * const node, int lvl)
       _pf.ALIGN();
       _pf.ID(mklbl(strlabel));
     }
-  }//FIXME
+  }
 }
 
 //---------------------------------------------------------------------------
@@ -624,36 +621,6 @@ void zu::postfix_writer::do_assignment_node(zu::assignment_node * const node, in
 
 //---------------------------------------------------------------------------
 
-// void zu::postfix_writer::do_program_node(zu::program_node * const node, int lvl) {
-//   // Note that Simple doesn't have functions. Thus, it doesn't need
-//   // a function node. However, it must start in the main function.
-//   // The ProgramNode (representing the whole program) doubles as a
-//   // main function node.
-
-//   // generate the main function (RTS mandates that its name be "_main")
-//   _pf.TEXT();
-//   _pf.ALIGN();
-//   _pf.GLOBAL("_main", _pf.FUNC());
-//   _pf.LABEL("_main");
-//   _pf.ENTER(0);  // Zu doesn't implement local variables
-
-//   node->statements()->accept(this, lvl);
-
-//   // end the main function
-//   _pf.INT(0);
-//   _pf.POP();
-//   _pf.LEAVE();
-//   _pf.RET();
-
-//   // these are just a few library function imports
-//   _pf.EXTERN("readi");
-//   _pf.EXTERN("printi");
-//   _pf.EXTERN("prints");
-//   _pf.EXTERN("println");
-// }
-
-//---------------------------------------------------------------------------
-
 void zu::postfix_writer::do_evaluation_node(zu::evaluation_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   node->argument()->accept(this, lvl); // determine the value
@@ -698,10 +665,11 @@ void zu::postfix_writer::do_print_node(zu::print_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::postfix_writer::do_read_node(zu::read_node * const node, int lvl) {
+  
+  //TODO: NOT FINISHED
   CHECK_TYPES(_compiler, _symtab, node);
   _pf.CALL("readi");
   _pf.PUSH();
-  // FIXME
   _pf.STORE();
 }
 
@@ -712,7 +680,7 @@ void zu::postfix_writer::do_for_node(zu::for_node * const node, int lvl) {
   int fortest = ++_lbl; 
   int forincr = ++_lbl; 
   int endfor = ++_lbl;
-  //_symtab.push(); FIXME variable scope
+
   _continues.push_back(forincr);
   _breaks.push_back(endfor);
   if (node->init())
@@ -735,7 +703,6 @@ void zu::postfix_writer::do_for_node(zu::for_node * const node, int lvl) {
   }
   _pf.JMP(mklbl(fortest));
   _pf.LABEL(mklbl(endfor));
-  //_symtab.pop();
   _continues.pop_back();
   _breaks.pop_back();
 }
@@ -744,19 +711,19 @@ void zu::postfix_writer::do_for_node(zu::for_node * const node, int lvl) {
 
 void zu::postfix_writer::do_if_node(zu::if_node * const node, int lvl) {
   int lbl1;
-  //_symtab.push();
+  
   node->condition()->accept(this, lvl);
   _pf.JZ(mklbl(lbl1 = ++_lbl));
   node->block()->accept(this, lvl + 2);
   _pf.LABEL(mklbl(lbl1));
-  //_symtab.pop();
+  
 }
 
 //---------------------------------------------------------------------------
 
 void zu::postfix_writer::do_if_else_node(zu::if_else_node * const node, int lvl) {
   int lbl1, lbl2;
-  //_symtab.push();
+  
   node->condition()->accept(this, lvl);
   _pf.JZ(mklbl(lbl1 = ++_lbl));
   node->thenblock()->accept(this, lvl + 2);
@@ -764,7 +731,7 @@ void zu::postfix_writer::do_if_else_node(zu::if_else_node * const node, int lvl)
   _pf.LABEL(mklbl(lbl1));
   node->elseblock()->accept(this, lvl + 2);
   _pf.LABEL(mklbl(lbl1 = lbl2));
-  //_symtab.pop();
+  
 }
 
 //---------------------------------------------------------------------------
