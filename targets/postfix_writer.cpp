@@ -665,8 +665,7 @@ void zu::postfix_writer::do_print_node(zu::print_node * const node, int lvl) {
 //---------------------------------------------------------------------------
 
 void zu::postfix_writer::do_read_node(zu::read_node * const node, int lvl) {
-  
-  //TODO: NOT FINISHED
+
   CHECK_TYPES(_compiler, _symtab, node);
   _pf.CALL("readi");
   _pf.PUSH();
